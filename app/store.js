@@ -1,15 +1,28 @@
 import { Project } from "./models/Project.js";
+import { Contact } from "./models/Contact.js";
+
+let bigTank = new Project({
+  id: "8",
+  name: "Big Tank",
+  description: "this is a big thought project"
+});
 
 class Store {
   state = {
     projects: [
-      new Project({ id: "8", name: "P1", description: "this is p1" }),
-      new Project({ id: "dfjslksa", name: "P2", description: "this is p2" })
+      bigTank,
+      new Project({
+        id: "2",
+        name: "CodeWorks",
+        description: "dont you wish your code worked"
+      })
     ],
-    activeProject: new Project({
-      name: "starter",
-      description: "If you click away from me I will never return"
-    })
+    activeProject: bigTank,
+    contacts: [
+      new Contact({ name: "Jimmy Tester", projectId: "8" }),
+      new Contact({ name: "Billy Bob", projectId: "2" })
+    ],
+    groups: []
   };
 }
 

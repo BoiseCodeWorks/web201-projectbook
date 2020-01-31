@@ -1,17 +1,28 @@
+import { generateId } from "../utils.js";
+
 export class Project {
   constructor({ name, description, id = generateId() }) {
     this.id = id;
     this.name = name;
     this.description = description;
   }
-}
 
-function generateId() {
-  var result = "";
-  var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  var characterLength = characters.length;
-  for (var i = 0; i < 10; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characterLength));
+  get ListTemplate() {
+    return /*html*/ `
+    <div class="project">
+      <div onclick="app.projectController.viewProject('${this.id}')" class="project-name">
+        ${this.name}
+      </div>
+    </div>
+    `;
   }
-  return result;
+
+  get DetailTemplate() {
+    return /*html*/ `
+    <div>
+      <h1 class="project-title">${this.name}</h1>
+      <p class="project-description">${this.description}</p>
+    </div>
+    `;
+  }
 }

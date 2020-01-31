@@ -5,13 +5,7 @@ import { STORE } from "../store.js";
 function drawProjects() {
   let template = "";
   STORE.state.projects.forEach(project => {
-    template += /*html*/ `
-      <div class="project">
-        <div onclick="app.projectController.viewProject('${project.id}')" class="project-name">
-          ${project.name}
-        </div>
-      </div>
-      `;
+    template += project.ListTemplate;
   });
 
   document.getElementById("projects").innerHTML = template;
@@ -22,12 +16,7 @@ function drawProjectDetails() {
   if (!project.id) {
     return;
   }
-  
-  let template = /*html*/ `
-    <h1 class="project-title">${project.name}</h1>
-    <p class="project-description">${project.description}</p>
-    `;
-  document.getElementById("projectDetails").innerHTML = template;
+  document.getElementById("projectDetails").innerHTML = project.DetailTemplate;
 }
 
 // The controllers job is to manage view
@@ -42,9 +31,10 @@ export class ProjectController {
     event.preventDefault();
     let form = event.target;
     try {
-      // @ts-ignore
       projectService.createProject({
+        // @ts-ignore
         name: form.projectName.value,
+        // @ts-ignore
         description: form.projectDescription.value
       });
       // @ts-ignore
