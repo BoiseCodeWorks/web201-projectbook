@@ -23,7 +23,9 @@ class Store {
       new Contact({ name: "Billy Bob", projectId: "2" })
     ],
     groups: [],
-    pokemon: []
+    pokemon: [],
+    next: "",
+    previous: ""
   };
 }
 
