@@ -22,7 +22,8 @@ class Store {
       new Contact({ name: "Jimmy Tester", projectId: "8" }),
       new Contact({ name: "Billy Bob", projectId: "2" })
     ],
-    groups: []
+    groups: [],
+    pokemon: []
   };
 }
 
