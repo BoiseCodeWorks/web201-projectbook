@@ -1,5 +1,6 @@
 import { Project } from "./models/Project.js";
 import { Contact } from "./models/Contact.js";
+import { Pokemon } from "./models/Pokemon.js";
 
 let bigTank = new Project({
   id: "8",
@@ -23,7 +24,15 @@ class Store {
       new Contact({ name: "Billy Bob", projectId: "2" })
     ],
     groups: [],
+    /**
+     * @type {Pokemon[]}
+     */
     pokemon: [],
+    /**
+     * @type {Pokemon[]}
+     */
+    myPokemon: [],
+    activePokemon: new Pokemon(),
     next: "",
     previous: ""
   };
