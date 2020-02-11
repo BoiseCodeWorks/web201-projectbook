@@ -41,6 +41,8 @@ function drawError(error) {
 
 export class PokemonController {
   constructor() {
+    STORE.subscribe("pokemon", drawPokeList);
+    STORE.subscribe("activePokemon", drawActivePokemon);
     this.getPokemonList();
     this.getMyPokemon();
   }
@@ -48,7 +50,6 @@ export class PokemonController {
     try {
       console.log("You clicked the poke button");
       await pokemonService.getPokemonList(url);
-      drawPokeList();
     } catch (e) {
       drawError(e);
     }
@@ -70,7 +71,6 @@ export class PokemonController {
   async getPokemon(name) {
     try {
       await pokemonService.getPokemon(name);
-      drawActivePokemon();
     } catch (error) {
       drawError(error);
     }

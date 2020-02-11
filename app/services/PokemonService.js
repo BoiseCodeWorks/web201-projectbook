@@ -8,9 +8,10 @@ class PokemonService {
   async getPokemonList(url = BASEURL) {
     let response = await fetch(url);
     let data = await response.json();
-    STORE.state.pokemon = data.results.map(pokeData => new Pokemon(pokeData));
-    STORE.state.next = data.next;
-    STORE.state.previous = data.previous;
+    let pokemon = data.results.map(pokeData => new Pokemon(pokeData));
+    STORE.commit("pokemon", pokemon);
+    STORE.commit("next", data.next);
+    STORE.commit("previous", data.previous);
   }
   async getMyPokemonList() {
     let response = await fetch(SANDBOXURL);
@@ -22,7 +23,7 @@ class PokemonService {
     let response = await fetch(BASEURL + name);
     let pokemonData = await response.json();
     let pokemon = new Pokemon(pokemonData);
-    STORE.state.activePokemon = pokemon;
+    STORE.commit("activePokemon", pokemon);
   }
 
   async catchPokemon() {
